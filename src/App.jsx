@@ -24,7 +24,7 @@ function App(props) {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-3xl font-bold">Hi,I'm a React App</h1>
-      <p>This is really working!</p>
+      <p className='font-semibold'>This is really working!</p>
       <button onClick={switchNameHandler}>switch Name</button>
       <Body name={personsState.persons[0].name} age={personsState.persons[0].age} />
       <Body name={personsState.persons[1].name} age={personsState.persons[1].age} />
