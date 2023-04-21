@@ -1,34 +1,57 @@
 import React, { useState } from "react";
 import Body from "./components/Body";
 
-function App(props) {
-  const [personsState, setPersonsState] = useState({
-    persons: [
-      { name: "Mish", age: 20 },
-      { name: "Max", age: 28 },
-      { name: "Manu", age: 29 },
-    ],
-    otherState: "some other value",
-  });
-  const switchNameHandler = () => {
-    setPersonsState({
-      persons: [
-        { name: "Big-Mish", age: 19 },
-        { name: "Max", age: 30 },
-        { name: "Manu", age: 24 },
-      ],
-    });
+function App() {
+  const [celsius, setCelsius] = useState("");
+  const [fahrenheit, setFahrenheit] = useState("");
+  const handelCelsiusChange = (event) => {
+    const celsiusValue = event.target.value;
+    setCelsius(celsiusValue);
+    const fahrenheitValue = (celsiusValue * 9) / 5 + 32;
+    setFahrenheit(fahrenheitValue);
   };
-  console.log(personsState);
+
+  const handleFahrenheitChange = (event) => {
+    const fahrenheitValue = event.target.value;
+    setFahrenheit(fahrenheitValue);
+    const celsiusValue = ((fahrenheitValue - 32) * 5) / 9;
+  };
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-3xl font-bold">Hi,I'm a React App</h1>
-      <p className='font-semibold'>This is really working!</p>
-      <button onClick={switchNameHandler} className="border px-3 " >switch Name</button>
-      <Body name={personsState.persons[0].name} age={personsState.persons[0].age} />
-      <Body name={personsState.persons[1].name} age={personsState.persons[1].age} />
-      <Body name={personsState.persons[2].name} age={personsState.persons[2].age} />
+    <div className="flex flex-col items-center justify-center h-screen space-y-6  py-6">
+      <div className="w-[40%] p-6 shadow-lg bg-[#293462] space-y-8 rounded-md">
+        <div className="text-center">
+          <h1 className="text-3xl font-extrabold">
+            CELSIUS TO FAHRENHEIT CONVERTER
+          </h1>
+        </div>
+        <div className="flex flex-col items-center space-y-4 px-72 ">
+        <div className="flex items-center space-x-5 justify-center">
+          <label>
+            <h1 className="text-xl font-semibold text-[#fafbf6]">Celsius:</h1>
+            <input
+              className="bg-slate-600 rounded-full px-3 h-8"
+              type="number"
+              value={celsius}
+              onChange={handelCelsiusChange}
+            />
+          </label>
+        </div>
+
+        <div className="flex items-center space-x-5 justify-center">
+          <label>
+            <h1 className="text-xl font-semibold text-[#fafbf6]">Fahrenheit:</h1>
+            <input
+              className="bg-slate-600 rounded-full px-3 h-8"
+              type="number"
+              value={fahrenheit}
+              onChange={handleFahrenheitChange}
+            />
+          </label>
+        </div>
+        </div>
+        
+      </div>
     </div>
   );
 }
